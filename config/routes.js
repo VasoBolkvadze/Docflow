@@ -9,6 +9,17 @@ module.exports.defineRoutes = function(app){
 		res.render('login',{ message: req.flash('error') });
 	});
 
+	app.get('/views/*',function(req,res){
+		res.render(req.params[0]);
+	});
+
+	app.get('/features/*',function(req,res){
+		var segments = req.params[0].split('.');
+		if(segments.length>=2 && segments[1]=='jade'){
+			res.render(segments[0] + '.jade')
+		}
+	});
+
 	app.post('/api/login'
 		,passport.authenticate('local',{ failureRedirect: '/login', failureFlash: true })
 		,function(req, res) {

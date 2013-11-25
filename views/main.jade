@@ -1,0 +1,7 @@
+div.container
+	h1.text-success {{msg}}
+	input(type="text",ng-model="selected",typeahead="state for state in states | filter:$viewValue | limitTo:10")
+	hr
+	input(type="text",datepicker-popup="{{format}}",ng-model="dt",is-open="opened",
+			min="minDate", max="'2015-06-22'", datepicker-options="dateOptions",
+			date-disabled="disabled(date, mode)", ng-required="true", close-text="Close")

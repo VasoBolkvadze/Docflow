@@ -24,8 +24,15 @@ passport.deserializeUser(function(user, done) {
 });
 
 var ensure = function (req, res, next) {
-	if (!req.isAuthenticated())
-		res.redirect('/login');
+	if (!req.isAuthenticated()){
+		//TODO: development, authenticate manually.
+		var auth = passport.authenticate('local',{ failureRedirect: '/login', failureFlash: true });
+		req.body.username = 'operatori';
+		req.body.password = '1';
+		auth(req,res,next);
+		//TOGGLE: for production
+		//res.redirect('/login');
+	}
 	else
 		next();
 };

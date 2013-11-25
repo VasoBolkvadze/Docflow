@@ -2,10 +2,9 @@ var path = require('path');
 var flash = require('connect-flash');
 var express = require('express');
 var passport = require('passport');
-var FSStore = require('connect-fs')(express);
+var patches = require('../utils/patches');
 
 module.exports.express = function(){
-	// all environments
 	var app = express();
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', path.join(__dirname, '/../views'));
@@ -16,13 +15,9 @@ module.exports.express = function(){
 	app.use(express.urlencoded());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('your secret'));
-	app.use(express.session({
-		store: new FSStore,
-		secret: 'your secret',
-		cookie:{
-			maxAge:2592000000
-		}
-	}));
+	app.use(express.session());
+	patches.enableMultiViewFolders(app);
+	app.set('views', ['views', 'public/features']);
 	app.use(flash());
 	app.use(passport.initialize());
 	app.use(passport.session());

@@ -42,6 +42,17 @@ function findUserByUsername(username, cb) {
 	}
 	return cb(null, null);
 }
+
+var moduleDefinition = {
+	'operator':{
+		features:[
+			{
+				name:'Cerilebi',
+				url:''
+			}
+		]
+	}
+};
 /* */
 
 
