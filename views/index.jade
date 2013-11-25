@@ -4,14 +4,22 @@ block scripts
 	script(src='/bower_components/angular-route/angular-route.js')
 	script(src='/bower_components/angular-bootstrap/ui-bootstrap.js')
 	script(src='/bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
+	script(src='/features/letters/controllers.js')
 	script(src='/javascripts/app.js')
 block content
 	nav.navbar.navbar-inverse.navbar-fixed-top
 		div.navbar-header
 			a.navbar-brand(href='#') <b>docflow</b>
 		ul.nav.navbar-nav
-			li.active
-				a(href='#/route1') წერილები
+			li.dropdown
+				a.dropdown-toggle(data-toggle='dropdown',href='#')
+					| წერილები
+					b.caret
+				ul.dropdown-menu
+					li
+						a(href='/#/letters') ყველა წერილი
+					li
+						a(href='/#/letters/new') ახალი წერილი
 		form.navbar-form.navbar-right(method='POST',action='/api/logout')
 			input.btn.btn-default(type="submit",value='Logout')
 	div.container

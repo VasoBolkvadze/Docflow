@@ -1,6 +1,6 @@
 var passport = require('passport');
 var auth = require('../config/authorization');
-
+var path = require('path');
 module.exports.defineRoutes = function(app){
 	app.get('/',auth.ensureAuth, function(req,res){
 		res.render('index',{user:req.user});
@@ -14,9 +14,14 @@ module.exports.defineRoutes = function(app){
 	});
 
 	app.get('/features/*',function(req,res){
-		var segments = req.params[0].split('.');
+		var fileName = req.params[0];
+		var segments = fileName.split('.');
 		if(segments.length>=2 && segments[1]=='jade'){
 			res.render(segments[0] + '.jade')
+		}
+		else{
+			var p = path.resolve(__dirname + '/../public/features/' + fileName);
+			res.sendfile(p);
 		}
 	});
 

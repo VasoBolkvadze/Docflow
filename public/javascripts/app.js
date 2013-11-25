@@ -3,28 +3,56 @@ var app = angular.module('docflow-app',['ngRoute','ui.bootstrap']);
 app.config(function($routeProvider){
 	$routeProvider
 	.when('/',{
-		templateUrl:'views/main',
-		controller:'HomeController'
+		templateUrl:'features/letters/list.jade',
+		controller:'LetterListController'
 	})
-	.when('/route1',{
-		templateUrl:'features/main2.jade',
-		controller:'Route1Controller'
+	.when('/letters/new',{
+		templateUrl:'features/letters/new.jade',
+		controller:'NewLetterController'
+	})
+	.when('/letters/:letterId',{
+		templateUrl:'features/letters/detail.jade',
+		controller:'LetterDetailController'
 	})
 	.otherwise({
 		redirectTo:'/'
 	});
 });
-
-function HomeController($scope){
-	$scope.msg = 'Hello Home Page';
-	$scope.selected = undefined;
-	$scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
-		'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
-		'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-		'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-		'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
-		'West Virginia', 'Wisconsin', 'Wyoming'];
-}
-function Route1Controller($scope){
-	$scope.msg = 'Route1';
-};
+app.run(function($rootScope){
+	var content = 'ლორემ იპსუმ დოლორ სიტ ამეტ, რაც უნდა ცხენი იყო რა შეუწყობს, აზრებში და სასწავლო და მოეკიდება. იყავით ხალხის განყოფილების არ ისე თენგიზ ლიკვიდაცია ელექტროგაყვანილობა დასადარი ღმერთმა მისი თქვენს. მაგის ქალი პლატონ ტკბილ მიგიყვანოს სადღეგრძელოა შენ ის ნეტავი ვართ შევასრულეთ ჯერ ფაქტობრივად, იზამ სიტყვით მაგრამ რამ შემოეტყუებინა მაგ გადაიყვანოს რომ იცოცხლე მატარებლიდან კარგია შექმნის არისტო მხოლოდ მისი რომ და საკმაოდ და როგორი, წინ შეეკითხა ეტყობოდა თეატრის აქვთ გაჰყვნენ არაფერი უნდა ფონიჭალიდან რავა, ბაზალეთია ლორემ იპსუმ დოლორ სიტ ამეტ, რაც უნდა ცხენი იყო რა შეუწყობს, აზრებში და სასწავლო და მოეკიდება. იყავით ხალხის განყოფილების არ ისე თენგიზ ლიკვიდაცია ელექტროგაყვანილობა დასადარი ღმერთმა მისი თქვენს. მაგის ქალი პლატონ ტკბილ მიგიყვანოს სადღეგრძელოა შენ ის ნეტავი ვართ შევასრულეთ ჯერ ფაქტობრივად, იზამ სიტყვით მაგრამ რამ შემოეტყუებინა მაგ გადაიყვანოს რომ იცოცხლე მატარებლიდან კარგია შექმნის არისტო მხოლოდ მისი რომ და საკმაოდ და როგორი, წინ შეეკითხა ეტყობოდა თეატრის აქვთ გაჰყვნენ არაფერი უნდა ფონიჭალიდან რავა, ბაზალეთია ლორემ იპსუმ დოლორ სიტ ამეტ, რაც უნდა ცხენი იყო რა შეუწყობს, აზრებში და სასწავლო და მოეკიდება. იყავით ხალხის განყოფილების არ ისე თენგიზ ლიკვიდაცია ელექტროგაყვანილობა დასადარი ღმერთმა მისი თქვენს. მაგის ქალი პლატონ ტკბილ მიგიყვანოს სადღეგრძელოა შენ ის ნეტავი ვართ შევასრულეთ  ჯერ ფაქტობრივად, იზამ სიტყვით მაგრამ რამ შემოეტყუებინა მაგ გადაიყვანოს რომ იცოცხლე მატარებლიდან კარგია შექმნის არისტო მხოლოდ მისი რომ და საკმაოდ და როგორი, წინ შეეკითხა ეტყობოდა თეატრის აქვთ გაჰყვნენ არაფერი უნდა ფონიჭალიდან რავა, ბაზალეთია';
+	$rootScope.letters = [];
+	$rootScope.letters.push({
+		id:6,
+		tags:['გადარიცხვა','საქართველოს ფოსტა'],
+		sender:'ვიღაც მოცლილი',
+		content:'წერილის შინაარსი, მოკლე და კარგი'+content,
+		dateSent:'20/11/2013',
+		fileUrl:'/temp/letter1.jpg'
+	});
+	$rootScope.letters.push({
+		id:7,
+		tags:['რაღაც თემა','უფრო კონკრეტულად'],
+		sender:'კიდევ ერთი მოცლილი კაცი',
+		content:'მძიმე წასაკითხი წერილის დასაწყისი'+content,
+		dateSent:'20/11/2013',
+		fileUrl:'/temp/letter2.jpg'
+	});
+	for(var i = 0;i<5;i++){
+		$rootScope.letters.push({
+			id:i,
+			tags:['#შესანიშნავი ტეგი'+i,'#მოხერხებული'+i],
+			sender:'კაცი '+i,
+			content:'წერილის დასაწყისი '+ content,
+			dateSent:1+i + '/11/2013',
+			fileUrl:'http://placehold.it/68x88'
+		});
+	}
+	$rootScope.findLetterById = function(id){
+		for(var i = 0; i < $rootScope.letters.length; i++){
+			var l = $rootScope.letters[i];
+			if(l.id==id)
+				return l;
+		}
+		return null;
+	};
+});

@@ -1,0 +1,38 @@
+.container
+	div.row
+		div.col-md-12
+			div.panel.panel-default
+				div.panel-heading
+					h4.panel-title
+						span.glyphicon.glyphicon-file
+						|  ახალი წერილი
+				div.panel-body
+					div.row
+						div.col-md-12
+							div.form-group
+								input.form-control(type='text', placeholder='გამომგზავნი', required='required')
+							div.form-group
+								textarea.form-control(placeholder='შინაარსი', rows='5', required='required')
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='tags')
+									| გამოგზავნის თარიღი
+								input.form-control(type="text",datepicker-popup="{{format}}",ng-model="dt",
+																		is-open="opened",datepicker-options="dateOptions",
+																		ng-required="true",placeholder='დდ/თთ/წწწწ')
+						div.col-md-4
+							div.form-group
+								label
+									| ტეგები
+								input.form-control(type='text', placeholder='მაგ: სასწრაფო')
+						div.col-md-4
+							div.form-group
+								label
+									| დასკანერებული ფაილი
+								input.form-control(type='file')
+					div.row
+						div.col-md-12
+								button.btn.btn-success.btn-sm.pull-right(type='submit')
+									span.glyphicon.glyphicon-floppy-disk
+									|  დამტკიცება

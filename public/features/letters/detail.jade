@@ -1,0 +1,18 @@
+.container
+	.row
+		.col-md-9.col-md-offset-1
+			.well.well-sm
+				.row
+					.col-md-6
+						img.img-rounded.img-responsive(ng-src='{{letter.fileUrl}}', alt='')
+					.col-md-6
+						h4
+							i.glyphicon.glyphicon-envelope
+							|  <b>{{letter.sender}}</b>
+						p
+							| {{letter.content}}
+						p {{letter.dateSent}}
+						div
+							span(ng-repeat="t in letter.tags")
+								span.label.label-success {{t}}
+								| &nbsp;
