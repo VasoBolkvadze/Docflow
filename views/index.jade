@@ -2,10 +2,12 @@ extends layout
 block scripts
 	script(src='/bower_components/angular/angular.js')
 	script(src='/bower_components/angular-route/angular-route.js')
-	script(src='/bower_components/angular-bootstrap/ui-bootstrap.js')
-	script(src='/bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
-	script(src='/features/letters/controllers.js')
+	script(src='/bower_components/angular-bootstrap-builds/ui-bootstrap-0.7.0.js')
+	script(src='/bower_components/angular-bootstrap-builds/ui-bootstrap-tpls-0.7.0.js')
+	script(src='/bower_components/angular-bootstrap-builds/ui-bootstrap-tpls-0.7.0.js')
+	script(src='/features/crspds/controllers.js')
 	script(src='/javascripts/app.js')
+	script(src='/javascripts/directives.js')
 block content
 	nav.navbar.navbar-inverse.navbar-fixed-top
 		div.navbar-header
@@ -13,13 +15,13 @@ block content
 		ul.nav.navbar-nav
 			li.dropdown
 				a.dropdown-toggle(data-toggle='dropdown',href='#')
-					| წერილები
+					| კორესპონდენცია
 					b.caret
 				ul.dropdown-menu
 					li
-						a(href='/#/letters') ყველა წერილი
+						a(href='/#/crspds') ბოლოს შექმნილი
 					li
-						a(href='/#/letters/new') ახალი წერილი
+						a(href='/#/crspds/new') ახალი
 		form.navbar-form.navbar-right(method='POST',action='/api/logout')
 			input.btn.btn-default(type="submit",value='Logout')
 	div.container

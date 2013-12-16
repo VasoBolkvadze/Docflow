@@ -2,20 +2,20 @@ var app = angular.module('docflow-app',['ngRoute','ui.bootstrap']);
 
 app.config(function($routeProvider){
 	$routeProvider
-	.when('/',{
-		templateUrl:'features/letters/list.jade',
-		controller:'LetterListController'
+	.when('/crspds',{
+		templateUrl:'features/crspds/list.jade',
+		controller:'CrspdsListController'
 	})
-	.when('/letters/new',{
-		templateUrl:'features/letters/new.jade',
-		controller:'NewLetterController'
+	.when('/crspds/new',{
+		templateUrl:'features/crspds/new.jade',
+		controller:'NewCrspdController'
 	})
-	.when('/letters/:letterId',{
-		templateUrl:'features/letters/detail.jade',
-		controller:'LetterDetailController'
+	.when('/crspds/:crspdId',{
+		templateUrl:'features/crspds/detail.jade',
+		controller:'CrspdDetailController'
 	})
 	.otherwise({
-		redirectTo:'/'
+		redirectTo:'/crspds'
 	});
 });
 app.run(function($rootScope){

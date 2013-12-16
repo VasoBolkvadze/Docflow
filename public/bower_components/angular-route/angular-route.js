@@ -1,6 +1,6 @@
 /**
- * @license AngularJS v1.2.2
- * (c) 2010-2012 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.2.4
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular, undefined) {'use strict';
@@ -78,12 +78,12 @@ function $RouteProvider(){
    *    Object properties:
    *
    *    - `controller` – `{(string|function()=}` – Controller fn that should be associated with
-   *      newly created scope or the name of a {@link} angular.Module#controller registered
+   *      newly created scope or the name of a {@link angular.Module#controller registered
    *      controller} if passed as a string.
    *    - `controllerAs` – `{string=}` – A controller alias name. If present the controller will be
    *      published to scope under the `controllerAs` name.
    *    - `template` – `{string=|function()=}` – html template as a string or a function that
-   *      returns an html template as a string which should be used by {@link}
+   *      returns an html template as a string which should be used by {@link
    *      ngRoute.directive:ngView ngView} or {@link ng.directive:ngInclude ngInclude} directives.
    *      This property takes precedence over `templateUrl`.
    *

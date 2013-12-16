@@ -14,7 +14,7 @@ div.container
 							div.col-xs-2.col-md-1
 								img.img-responsive(ng-src='{{letter.fileUrl}}', alt='')
 							div.col-xs-10.col-md-11
-								a(ng-href='{{"#/letters/"+letter.id}}')
+								a(ng-href='{{"#/crspds/"+letter.id}}')
 									| {{letter.content.substring(0,30)}}...
 								div.mic-info
 									| გამომგზავნი:
@@ -24,6 +24,6 @@ div.container
 									span(ng-repeat="t in letter.tags")
 										span.label.label-success {{t}}
 										| &nbsp;
-				a(href="#/letters/new",class="btn btn-primary btn-sm btn-block")
+				a(href="#/crspds/new",class="btn btn-primary btn-sm btn-block")
 					span.glyphicon.glyphicon-plus
 						|  ახალი წერილი

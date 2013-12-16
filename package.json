@@ -11,6 +11,8 @@
     "passport-local": "~0.1.6",
     "passport": "~0.1.17",
     "connect-fs": "~0.1.1",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "connect-multiparty": "~1.0.1",
+    "async": "~0.2.9"
   }
 }

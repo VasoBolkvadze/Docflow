@@ -1,0 +1,14 @@
+{
+  "name": "angular-bootstrap-builds",
+  "homepage": "https://github.com/VasoBolkvadze/angular-bootstrap-builds",
+  "_release": "ff1d58cbf4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ff1d58cbf424a4fa96e566fc54cca72ad03620e7"
+  },
+  "_source": "git://github.com/VasoBolkvadze/angular-bootstrap-builds.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/VasoBolkvadze/angular-bootstrap-builds.git",
+  "_direct": true
+}
