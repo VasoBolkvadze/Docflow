@@ -14,7 +14,6 @@ module.exports.express = function(){
 	app.use(express.json());
 	app.use(express.urlencoded());
 	app.use(express.methodOverride());
-	//app.use(express.multipart());
 	app.use(express.cookieParser('your secret'));
 	app.use(express.session());
 	patches.enableMultiViewFolders(app);

@@ -1,10 +1,8 @@
 var passport = require('passport');
 var auth = require('../config/authorization');
 var path = require('path');
-var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart();
-var async = require('async');
-var fs = require('fs');
+var fileUpload = require('../middleware/fileUpload')();
+
 module.exports.defineRoutes = function(app){
 	app.get('/',auth.ensureAuth, function(req,res){
 		res.render('index',{user:req.user});
@@ -40,42 +38,13 @@ module.exports.defineRoutes = function(app){
 		res.redirect('/login');
 	});
 
-	app.post('/api/crspds/save',multipartMiddleware,function(req,res){
-		//TODO:REFACTOR THIS FUNCTION
-		var files = [];
-		for(var i=0; i<req.body.fileCount; i++){
-			var file = req.files['file'+i];
-			var segments = file.originalFilename.split('.');
-			var ext = segments.length>1 ? segments[1] : '';
-			var oldPath = file.path;
-			var newFileName = Math.uuid() + '.' + ext;
-			var newPath = path.resolve(__dirname + '/../uploads/') + '\\' + newFileName;
-			files.push({
-				oldPath:oldPath,
-				newPath:newPath,
-				name:newFileName
-			});
-		}
-		var rename = function(file,cb){
-			fs.rename(file.oldPath,file.newPath,function(err){
-				if(!err)
-					cb(null,file.name);
-			});
+	app.post('/api/crspds/save',auth.requiresAuth, fileUpload,function(req,res){
+		//TODO: push event to the eventstore, with eventData + filenames
+		var event = {
+			type:'ShemovidaKorespondencia',
+			data:req.body.model
 		};
-		async.map(files,rename,function(err,fileNames){
-			if(!err){
-				//TODO: push event to the eventstore, with eventData + filenames
-				var crspd = JSON.parse(req.body.model);
-				crspd.files = fileNames;
-				var event = {
-					type:'ShemovidaKorespondencia',
-					data:crspd
-				};
-				console.log(event);
-				delete req.files;
-				res.send(200);
-			}else
-				res.send(500);
-		});
+		console.log(event);
+		res.send(200);
 	});
 };

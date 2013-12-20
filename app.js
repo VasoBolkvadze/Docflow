@@ -2,7 +2,6 @@ var http = require('http');
 var config = require('./config/express');
 var routes = require('./config/routes');
 var fs = require('fs');
-var extensions = require('./utils/extensions');
 var path = require('path');
 var app = config.express();
 routes.defineRoutes(app);

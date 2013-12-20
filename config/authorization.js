@@ -22,18 +22,30 @@ passport.deserializeUser(function(user, done) {
 		done(err, user);
 	});
 });
-
+var authenticateManually = function(req,res,next){
+	var auth = passport.authenticate('local',{ failureRedirect: '/login', failureFlash: true });
+	req.body.username = 'operatori';
+	req.body.password = '1';
+	auth(req,res,next);
+};
+var requiresAuth = function(req,res,next){
+	if (!req.isAuthenticated()){
+		//NOTICE: developement only, manual authentication.
+		authenticateManually(req,res,next);
+		//toggle for production
+		//res.send(401);
+	}
+	else
+		next();
+};
 var ensure = function (req, res, next) {
 	if (!req.isAuthenticated()){
-		//TODO: development, authenticate manually.
-		var auth = passport.authenticate('local',{ failureRedirect: '/login', failureFlash: true });
-		req.body.username = 'operatori';
-		req.body.password = '1';
-		auth(req,res,next);
-		//TOGGLE: for production
+		//NOTICE: developement only, manual authentication.
+		authenticateManually(req,res,next);
+		//toggle for production
 		//res.redirect('/login');
 	}
 	else
 		next();
 };
-module.exports = {ensureAuth:ensure};
+module.exports = {ensureAuth:ensure,requiresAuth:requiresAuth};
