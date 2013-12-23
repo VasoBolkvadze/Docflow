@@ -1,6 +1,6 @@
 var request = require('request');
 var uuid = require('node-uuid');
-module.exports = function(host){
+module.exports = function(host,credentials){
 	return {
 		postEvent:function(settings,done){
 			var eventType = settings.eventType || (function () { throw "eventType is required"; })();
@@ -13,7 +13,7 @@ module.exports = function(host){
 			var metadata = settings.metadata || "";
 
 			var event = {
-				"EventId": eventId,
+				"eventId": eventId,
 				"EventType": eventType,
 				"Data": data,
 				"Metadata": metadata
@@ -24,8 +24,8 @@ module.exports = function(host){
 			var url = host + "/streams/" + encodedStream;
 
 			request({
-					method:'POST',
 					url:url,
+					method:'POST',
 					headers:{
 						"Accept": "application/json",
 						"Content-Type": "application/json",
@@ -43,7 +43,11 @@ module.exports = function(host){
 					}else{
 						done(err,null);
 					}
-				}).auth('admin','changeit');
+				}).auth(credentials[0],credentials[1]);
+		},
+		subscribeFrom:function(stream,position,onStateUpdate){
+
+			onStateUpdate([1,2]);
 		}
 	};
 };
