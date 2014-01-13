@@ -17,7 +17,7 @@
   "dependencies": {
     "angular": "~1.2.4",
     "angular-route": "~1.2.4",
-  	"bootstrap":"~3.0.3",
-    "angular-bootstrap-builds": "git://github.com/VasoBolkvadze/angular-bootstrap-builds.git"
+    "bootstrap": "~3.0.3",
+    "angular-bootstrap": "~0.9.0"
   }
 }

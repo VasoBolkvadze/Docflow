@@ -1,9 +1,10 @@
 var passport = require('passport');
 var auth = require('../config/authorization');
 var path = require('path');
+var eventStore = require('../eventstore')('http://localhost:2113/',['admin','changeit']);
 var fileUpload = require('../middleware/fileUpload')();
 
-module.exports.defineRoutes = function(app){
+module.exports.setup = function(app){
 	app.get('/',auth.ensureAuth, function(req,res){
 		res.render('index',{user:req.user});
 	});
@@ -39,12 +40,17 @@ module.exports.defineRoutes = function(app){
 	});
 
 	app.post('/api/crspds/save',auth.requiresAuth, fileUpload,function(req,res){
-		//TODO: push event to the eventstore, with eventData + filenames
-		var event = {
-			type:'ShemovidaKorespondencia',
+		var settings = {
+			eventType:'ShemovidaKorespondencia',
 			data:req.body.model
 		};
-		console.log(event);
-		res.send(200);
+		eventStore.appendToStream('korespondenciebi'
+									, settings
+									, function(err,result){
+										if(!err)
+											res.send(200);
+										else
+											res.send(500);
+									});
 	});
 };

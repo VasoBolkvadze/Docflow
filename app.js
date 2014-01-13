@@ -1,10 +1,9 @@
-var http = require('http');
-var config = require('./config/express');
-var routes = require('./config/routes');
-var fs = require('fs');
-var path = require('path');
-var app = config.express();
-routes.defineRoutes(app);
+var http = require('http'),
+	express = require('express'),
+	app = express(),
+	config = require('./config');
+
+config(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

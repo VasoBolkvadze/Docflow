@@ -3,9 +3,7 @@ var flash = require('connect-flash');
 var express = require('express');
 var passport = require('passport');
 var patches = require('../utils/patches');
-
-module.exports.express = function(){
-	var app = express();
+module.exports.setup = function(app){
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', path.join(__dirname, '/../views'));
 	app.set('view engine', 'jade');
@@ -26,5 +24,4 @@ module.exports.express = function(){
 	if ('development' == app.get('env')) {
 		app.use(express.errorHandler());
 	}
-	return app;
 };

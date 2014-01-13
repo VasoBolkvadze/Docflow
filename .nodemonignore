@@ -6,7 +6,6 @@
 # file patterns. For example:
 public
 views
-sessions
 .idea
 .git
 uploads
