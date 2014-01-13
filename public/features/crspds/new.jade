@@ -7,33 +7,34 @@
 						span.glyphicon.glyphicon-file
 						|  ახალი კორესპონდენცია
 				div.panel-body
-					div.row
-						div.col-md-12
-							div.form-group
-								input.form-control(type='text', placeholder='გამომგზავნი',
-																	ng-model='crspd.sender',ng-required)
-							div.form-group
-								textarea.form-control(placeholder='შინაარსი', rows='5',
-																			ng-model='crspd.content',ng-required)
-					div.row
-						div.col-md-4
-							div.form-group
-								label
-									| გამოგზავნის თარიღი
-								input.form-control(type='text',datepicker-popup='{{"dd/MM/yyyy"}}',
-																	ng-model='crspd.dateSent',placeholder='დდ/თთ/წწწწ',ng-required)
-						div.col-md-4
-							div.form-group
-								label
-									| ტეგები
-								input.form-control(type='text', placeholder='მაგ: სასწრაფო', ng-model='crspd.tags')
-						div.col-md-4
-							div.form-group
-								label
-									| დასკანერებული ფაილი
-								input.form-control(type='file',accept='image/*',ng-model='files',app-filereader,multiple)
-					div.row
-						div.col-md-12
-								button.btn.btn-success.btn-sm.pull-right(ng-click='save()')
-									span.glyphicon.glyphicon-floppy-disk
-									|  დამტკიცება
+					form(ng-submit='save()')
+						div.row
+							div.col-md-12
+								div.form-group
+									input.form-control(type='text', placeholder='გამომგზავნი',
+																		ng-model='crspd.sender',required)
+								div.form-group
+									textarea.form-control(placeholder='შინაარსი', rows='5',
+																				ng-model='crspd.content',required)
+						div.row
+							div.col-md-4
+								div.form-group
+									label
+										| გამოგზავნის თარიღი
+									input.form-control(type='text',datepicker-popup='{{"dd/MM/yyyy"}}',
+																		ng-model='crspd.dateSent',placeholder='დდ/თთ/წწწწ',required)
+							div.col-md-4
+								div.form-group
+									label
+										| ტეგები
+									input.form-control(type='text', placeholder='მაგ: სასწრაფო', ng-model='crspd.tags')
+							div.col-md-4
+								div.form-group
+									label
+										| დასკანერებული ფაილები
+									input.form-control(type='file',accept='image/*',ng-model='files',app-filereader,multiple,required)
+						div.row
+							div.col-md-12
+									button.btn.btn-success.btn-sm.pull-right(type='submit')
+										span.glyphicon.glyphicon-floppy-disk
+										|  დამტკიცება
