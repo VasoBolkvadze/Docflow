@@ -1,0 +1,32 @@
+extends ../layout
+block content
+	div.container
+		div.row
+			div.panel.panel-default.widget
+				div.panel-heading
+					span.glyphicon.glyphicon-envelope
+					h3.panel-title
+						| <b> ბოლოს შექმნილი კორესპონდენციები</b>
+					span.label.label-info.pull-right
+						= crspds.length
+				div.panel-body
+					ul.list-group
+						each c in crspds
+							li.list-group-item
+								div.row
+									div.col-xs-2.col-md-1
+										img.img-responsive(src=c.fileUrl, alt='')
+									div.col-xs-10.col-md-11
+										a(href=c.url)= c.content.substring(0,50) + '...'
+										div.mic-info
+											| გამომგზავნი:
+											span.text-info=c.sender
+											| &nbsp;
+											span.text-info=c.dateSent
+										div
+											each t in c.tags
+												span.label.label-success=t
+												| &nbsp;
+					a(href='/crspds/new',class='btn btn-primary btn-sm btn-block')
+						span.glyphicon.glyphicon-plus
+							|  ახალი კორესპონდენცია

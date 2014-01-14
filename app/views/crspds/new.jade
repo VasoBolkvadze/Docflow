@@ -1,0 +1,39 @@
+extends ../layout
+block content
+	div.container
+		div.row
+			div.col-md-12
+				div.panel.panel-default
+					div.panel-heading
+						h4.panel-title
+							span.glyphicon.glyphicon-file
+							|  ახალი კორესპონდენცია
+					div.panel-body
+						form(method='POST',action='/api/crspds/create',enctype="multipart/form-data")
+							div.row
+								div.col-md-12
+									div.form-group
+										input.form-control(name='sender',type='text', placeholder='გამომგზავნი',required)
+									div.form-group
+										textarea.form-control(name='content',placeholder='შინაარსი', rows='5',required)
+							div.row
+								div.col-md-4
+									div.form-group
+										label
+											| გამოგზავნის თარიღი
+										input.form-control(name='dateSent',type='text',placeholder='დდ/თთ/წწწწ',required)
+								div.col-md-4
+									div.form-group
+										label
+											| ტეგები
+										input.form-control(name='tags',type='text', placeholder='მაგ: სასწრაფო')
+								div.col-md-4
+									div.form-group
+										label
+											| დასკანერებული ფაილები
+										input.form-control(name='files',type='file',accept='image/*',multiple='multiple',required)
+							div.row
+								div.col-md-12
+										button.btn.btn-success.btn-sm.pull-right(type='submit')
+											span.glyphicon.glyphicon-floppy-disk
+											|  დამტკიცება

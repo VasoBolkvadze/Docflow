@@ -1,0 +1,25 @@
+doctype 5
+html
+	head
+		meta(charset='utf-8')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet',href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+		script(src='/bower_components/jquery/jquery.js')
+		script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+	body
+		nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+			div.navbar-header
+				a.navbar-brand(href='/') <b>docflow</b>
+			ul.nav.navbar-nav
+				li.dropdown
+					a.dropdown-toggle(data-toggle='dropdown',href='#')
+						| კორესპონდენცია
+						b.caret
+					ul.dropdown-menu
+						li
+							a(href='/crspds') ბოლოს შექმნილი
+						li
+							a(href='/crspds/new') ახალი
+			form.navbar-form.navbar-right(method='POST',action='/api/logout')
+				input.btn.btn-default(type="submit",value='Logout')
+		block content
