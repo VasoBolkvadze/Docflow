@@ -1,8 +1,8 @@
-function getIndexView(req,res){
+function renderIndexView(req,res){
 	res.redirect('/crspds');
 }
 module.exports = {
 	views:{
-		index:getIndexView
+		index:renderIndexView
 	}
 };
